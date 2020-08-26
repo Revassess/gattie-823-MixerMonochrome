@@ -24,7 +24,7 @@ public class ConnectionUtil {
 	// name of the created stored procedure in tier 3
 	public static final String TIER_3_PROCEDURE_NAME = "";
 	// name of the created sequence in tier 3
-	public static final String TIER_3_SEQUENCE_NAME = "";
+	public static final String TIER_3_SEQUENCE_NAME = "byThree";
 
 	// implement this method to connect to the db and return the connection object
 	public Connection connect(){
