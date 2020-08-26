@@ -2,7 +2,9 @@ package com.revature.config;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 /**
  * 
@@ -39,10 +41,19 @@ public class ConnectionUtil {
 		return DriverManager.getConnection(URL, USERNAME, PASSWORD);
 	}
 
-
 	//implement this method with a callable statement that calls the absolute value sql function
 	public long callAbsoluteValueFunction(long value){
-		return value;
+		try(Connection conn = connect()){
+			String sql = "SELECT ABS(" + value + ");";
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery(sql);
+			if(result.next()) {
+				return result.getLong(0);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1; //returns a negative to show absVal did not go through
 	}
 	
 
