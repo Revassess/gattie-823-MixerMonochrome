@@ -48,7 +48,7 @@ public class ConnectionUtil {
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(sql);
 			if(result.next()) {
-				return result.getLong(0);
+				return result.getLong(1);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
