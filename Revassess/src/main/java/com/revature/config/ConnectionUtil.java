@@ -1,6 +1,8 @@
 package com.revature.config;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.DriverManager;
 
 /**
  * 
@@ -27,8 +29,14 @@ public class ConnectionUtil {
 	public static final String TIER_3_SEQUENCE_NAME = "byThree";
 
 	// implement this method to connect to the db and return the connection object
-	public Connection connect(){
-		return null;
+	public Connection connect() throws SQLException{
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return DriverManager.getConnection(URL, USERNAME, PASSWORD);
 	}
 
 
